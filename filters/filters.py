@@ -14,6 +14,7 @@ def apply_filter(img_name,
                  filter = 'average',
                  kernel_size = 5, 
                  display = False,
+                 # conv2BW = False
                  ):
     # get image
     try:    
