@@ -8,26 +8,32 @@ from PIL import Image
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from skimage.color import rgb2gray
 
 
 """
-the apply_filter function has the paramters:
+the apply function has the paramters:
 1) img (string): the image name
 2) filter (string) : the filter to be applied ('median', 'gaussian', 'average'). default is 'average'
 3) kernel_size (int) : the size of the kernel which would be used for convolution. default size is 5
 4) display (bool): if set to true, displays the image. default false
+5) read_method (int): how the image is going to be read. 1 for color, 0 for grayscale, -1 for unchanged. default 1
+6) flip_scheme (bool): if set to true, flips the color scheme, that is black becomes white and vice a versa
+    
+returns: a numpy.ndarray
 """
 
 def apply_filter(img_name,
                  filter = 'average',
                  kernel_size = 5, 
                  display = False,
-                 # conv2BW = False
+                 read_method = 1,
+                 flip_scheme = False
                  ):
     # get image
     try:    
-        img = cv2.imread(img_name)
+        img = cv2.imread(img_name, read_method)
+        if flip_scheme == True:
+            img = cv2.bitwise_not(img)
         """
         if conv2BW == True:
             try:
@@ -40,11 +46,14 @@ def apply_filter(img_name,
             if filter == 'average':
                 blur = cv2.blur(img, (kernel_size, kernel_size))
     
-            if filter == 'gaussian':
+            elif filter == 'gaussian':
                 blur = cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
     
-            if filter == 'median':
+            elif filter == 'median':
                 blur = cv2.medianBlur(img, kernel_size)
+            else:
+                print("\nIncorrect filter entered.")
+                return img
             
     
             # if the filters can be applied, then display the image
@@ -66,6 +75,6 @@ def apply_filter(img_name,
     # the file does not exist
     except:
         print("\nThe file does not exist in the directory.")
-        return 0
+        return -1
         
     return blur
