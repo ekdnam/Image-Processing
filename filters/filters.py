@@ -10,6 +10,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage.color import rgb2gray
 
+
+"""
+the apply_filter function has the paramters:
+1) img (string): the image name
+2) filter (string) : the filter to be applied ('median', 'gaussian', 'average'). default is 'average'
+3) kernel_size (int) : the size of the kernel which would be used for convolution. default size is 5
+4) display (bool): if set to true, displays the image. default false
+"""
+
 def apply_filter(img_name,
                  filter = 'average',
                  kernel_size = 5, 
