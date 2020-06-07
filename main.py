@@ -11,7 +11,7 @@ import img_io
 
 img = "IMG_0624.JPG"
 """
-the apply function has the paramters:
+the apply_filter function has the paramters:
 1) img (string): the image name
 2) filter (string) : the filter to be applied ('median', 'gaussian', 'average'). default is 'average'
 3) kernel_size (int) : the size of the kernel which would be used for convolution. default size is 5
