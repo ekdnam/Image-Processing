@@ -1,6 +1,6 @@
 # Image-Processing
 
-## Apply filters
+## Applying filters
 
 Filters are applied to images in order to reduce noise as well as the blur the image. Blurring the image helps in edge detection.
 
