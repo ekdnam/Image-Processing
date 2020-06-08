@@ -32,15 +32,11 @@ def apply_filter(img_name,
     # get image
     try:    
         img = cv2.imread(img_name, read_method)
-        if flip_scheme == True:
-            img = cv2.bitwise_not(img)
-        """
-        if conv2BW == True:
-            try:
-                img = rgb2gray(img)
-            except:
-                print("\An error occurred while saving the image in grayscale format. Applying the filters in RGB format.")
-        """
+        try:
+            if flip_scheme == True:
+                img = cv2.bitwise_not(img)
+        except:
+            print("\nAn error occurred while flipping the scheme. The image will be processed normally.")
         try:
             # apply the filters
             if filter == 'average':
